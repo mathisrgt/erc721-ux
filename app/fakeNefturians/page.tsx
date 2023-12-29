@@ -53,7 +53,7 @@ export default function FakeNefturians() {
     try {
       await contract.methods.buyAToken().send({
         from: account,
-        value: web3.utils.toWei(tokenPrice.toString(), "ether"),
+        value: web3.utils.toWei("0.11", "ether")
       });
     } catch (error) {
       console.error("Error buying token", error);
