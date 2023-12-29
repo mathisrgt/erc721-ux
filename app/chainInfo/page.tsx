@@ -72,6 +72,18 @@ export const ChainInfoDetails = () => {
     useEffect(() => {
         if (sdk && account) {
             redirectToSepoliaChain();
+            const fetchBlockNumber = async () => {
+                try {
+                    const latestBlockNumber = await window.ethereum.request({
+                        "method": "eth_blockNumber",
+                        "params": []
+                      });
+                    setBlockNumber(latestBlockNumber);
+                } catch (error) {
+                    console.error("Error fetching block number:", error);
+                }
+            };
+            fetchBlockNumber();
         }
     }, [sdk, account]);
 
@@ -88,7 +100,11 @@ export const ChainInfoDetails = () => {
                 <>
                     <h2>Chain Information</h2>
                     <p>ChainId: {chainId}</p>
-                    <p>Last Block Number: {blockNumber}</p>
+                    {blockNumber !== null ? (
+                        <p>Last Block Number: {blockNumber}</p>
+                    ) : (
+                        <p>Loading block number...</p>
+                    )}
                     <p>User Address: {account}</p>
                 </>
             )}
