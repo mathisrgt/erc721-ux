@@ -49,7 +49,7 @@ export default function TokenDetail({ params }: { params: { tokenId: number } })
   }, [params.tokenId]);
 
   if (!tokenExists) {
-    return <div>Token does not exist.</div>;
+    return <div className="m-4"><h3>Token {params.tokenId} does not exist.</h3></div>;
   }
 
   return (
