@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import FakeBAYCContract from "../FakeBAYC.json";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function TokenDetail({ params }: { params: { tokenId: number } }) {
   const [web3, setWeb3] = useState(null);
@@ -52,13 +53,11 @@ export default function TokenDetail({ params }: { params: { tokenId: number } })
   }
 
   return (
-    <div>
+    <div className="m-4">
       <h1>Token Details</h1>
       <p>Token ID: {params.tokenId}</p>
       {attributes.map((attr, index) => (
-        <p key={index}>
-          {attr.trait_type}: {attr.value}
-        </p>
+        <p key={index}>{attr.trait_type}: {attr.value}</p>
       ))}
     </div>
   );

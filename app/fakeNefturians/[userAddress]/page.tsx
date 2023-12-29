@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import FakeNefturiansContract from "../FakeNefturians.json";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function TokenDetail({ params }: { params: { userAddress: number } }) {
   const userAddress = params.userAddress;
@@ -57,18 +58,27 @@ export default function TokenDetail({ params }: { params: { userAddress: number 
   }
 
   return (
-    <div>
-      <h1>Tokens Owned by {userAddress}</h1>
+    <div className="m-4 col-6">
+      <h1>Tokens Owned</h1>
+      <div className="input-group mt-4 mb-4">
+        <span className="input-group-text">Address</span>
+        <input className="form-control" type="text" value={userAddress} />
+      </div>
       {tokens.length > 0 ? (
-        <ul>
+        <div className="card-group">
           {tokens.map((token) => (
-            <li key={token.tokenId}>
-              <p>Token ID: {token.tokenId}</p>
-              <p>Name: {token.metadata.name}</p>
-              <p>Description: {token.metadata.description}</p>
-            </li>
+            <div className="card">
+              <img src="" className="card-img-top" alt=""></img>
+              <div className="card-body">
+                <h5 className="card-title">{token.metadata.name}</h5>
+                <p className="card-text">{token.metadata.description}</p>
+              </div>
+              <div className="card-footer">
+                <small className="text-body-secondary">Token ID: {token.tokenId}</small>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       ) : (
         <p>No tokens found for this user.</p>
       )}

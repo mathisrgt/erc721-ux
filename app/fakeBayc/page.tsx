@@ -1,12 +1,11 @@
 "use client"
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import Web3 from "web3";
 import FakeBAYCContract from "./FakeBAYC.json";
-import Button from "react-bootstrap/Button";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const FakeBayc = () => {
+export default function FakeBayc() {
   const [name, setName] = useState("");
   const [totalTokens, setTotalTokens] = useState(0);
   const [web3, setWeb3] = useState(null);
@@ -67,15 +66,15 @@ const FakeBayc = () => {
   };
 
   return (
-    <div>
+    <div className="m-4">
       <h1>{name}</h1>
       <p>Total Token Number: {totalTokens}</p>
       {accounts.length > 0 ? (
         <>
-          <Button onClick={handleClaim} disabled={claiming}>
+          <button className="btn btn-primary" onClick={handleClaim} disabled={claiming}>
             Claim a New Token
-          </Button>
-          {claimError && <p>{claimError}</p>}
+          </button>
+          {claimError && <p className="text-danger mt-2">{claimError}</p>}
         </>
       ) : (
         <p>Connect your wallet to claim a token</p>
@@ -83,5 +82,3 @@ const FakeBayc = () => {
     </div>
   );
 };
-
-export default FakeBayc;

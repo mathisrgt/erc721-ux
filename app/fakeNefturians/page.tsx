@@ -3,8 +3,9 @@
 import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import FakeNefturiansContract from "./FakeNefturians.json";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const FakeNefturians = () => {
+export default function FakeNefturians() {
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
   const [account, setAccount] = useState("");
@@ -63,15 +64,15 @@ const FakeNefturians = () => {
   };
 
   return (
-    <div>
+    <div className="m-4">
       <h1>Fake Nefturians</h1>
       <p>Minimum Token Price: {tokenPrice} ETH</p>
       {account ? (
         <>
-          <button onClick={handleBuyToken} disabled={buying}>
+          <button className="btn btn-primary" onClick={handleBuyToken} disabled={buying}>
             Buy a Token
           </button>
-          {buyError && <p>{buyError}</p>}
+          {buyError && <p className="text-danger mt-2">{buyError}</p>}
         </>
       ) : (
         <p>Connect your wallet to buy a token</p>
@@ -79,5 +80,3 @@ const FakeNefturians = () => {
     </div>
   );
 };
-
-export default FakeNefturians;
